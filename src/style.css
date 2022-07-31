@@ -1,0 +1,14 @@
+img {
+  width: 350px;
+  height: 500px;
+  object-fit: cover;
+}
+.movie-spec {
+  display: flex;
+  width: 350px;
+  justify-content: space-between;
+}
+.descript {
+  width: 350px;
+  text-align: justify;
+}
