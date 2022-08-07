@@ -1,14 +1,40 @@
-img {
-  width: 350px;
+.img-fluid {
   height: 500px;
   object-fit: cover;
 }
 .movie-spec {
   display: flex;
-  width: 350px;
   justify-content: space-between;
 }
-.descript {
-  width: 350px;
-  text-align: justify;
+
+#whole-card {
+  width: 330px;
+
+  place-content: center;
+}
+.like-dislike {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+button {
+  border: none;
+}
+.add-movie {
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+}
+.inputtext {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+.inputtext > div {
+  margin-bottom: 10px;
+}
+.link {
+  font-size: 20px;
+  margin-left: 10px;
 }

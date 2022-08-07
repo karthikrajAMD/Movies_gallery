@@ -1,9 +1,15 @@
+import { useState } from "react";
 import Card from "./sample_card";
 
+import AddMovie from "./add-movie";
+import { Routes, Route, Link } from "react-router-dom";
 function App() {
-  const data = [
+  const [color, setColor] = useState("");
+  const styles = {
+    backgroundColor: color,
+  };
+  const movie = [
     {
-      id: 1,
       name: "GOT",
       rating: 8.8,
       image:
@@ -12,7 +18,6 @@ function App() {
         "Nine noble families fight for control over the lands of Westeros, while an ancient enemy returns after being dormant for millennia.",
     },
     {
-      id: 2,
       name: "Victorious",
       rating: 6.2,
       image:
@@ -30,7 +35,6 @@ function App() {
         "A high school chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine in order to secure his family's future.",
     },
     {
-      id: 4,
       name: "Squid Game",
       rating: 8.0,
       image:
@@ -39,7 +43,6 @@ function App() {
         "Hundreds of cash-strapped players accept a strange invitation to compete in children's games. Inside, a tempting prize awaits with deadly high stakes. A survival game that has a whopping 45.6 billion-won prize at stake.",
     },
     {
-      id: 5,
       name: "Money Heist",
       rating: 8.2,
       image:
@@ -48,7 +51,6 @@ function App() {
         "An unusual group of robbers attempt to carry out the most perfect robbery in Spanish history - stealing 2.4 billion euros from the Royal Mint of Spain.",
     },
     {
-      id: 6,
       name: "Harry Potter",
       rating: 7.6,
       image:
@@ -57,7 +59,6 @@ function App() {
         "An orphaned boy enrolls in a school of wizardry, where he learns the truth about himself, his family and the terrible evil that haunts the magical world.",
     },
     {
-      id: 7,
       name: "The Flash",
       rating: 7.6,
       image:
@@ -66,7 +67,6 @@ function App() {
         "After being struck by lightning, Barry Allen wakes up from his coma to discover he's been given the power of super speed, becoming the Flash, and fighting crime in Central City.",
     },
     {
-      id: 8,
       name: "Strange Things",
       rating: 8.7,
       image:
@@ -75,21 +75,45 @@ function App() {
         "When a young boy disappears, his mother, a police chief and his friends must confront terrifying supernatural forces in order to get him back.",
     },
   ];
+  const [newmovie, setNewmovie] = useState([...movie]);
+
+  const fdata = newmovie;
+
   return (
     <>
-      <div class="container">
-        <div class="row ">
-          {data.map((moviedetail) => (
-            <Card
-              key={moviedetail.id}
-              name={moviedetail.name}
-              rating={moviedetail.rating}
-              image={moviedetail.image}
-              decript={moviedetail.descrip}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <input onChange={(e) => setColor(e.target.value)}></input>
+              <nav>
+                <nav>
+                  <Link className="link" to="/Add-Movie">
+                    Add Movie
+                  </Link>
+                </nav>
+              </nav>
+              <div className="container">
+                <div className="row justify-content-center" style={styles}>
+                  {fdata.map((mv, i) => (
+                    <Card key={i} movie={mv} />
+                  ))}
+                </div>
+              </div>
+            </>
+          }
+        />
+        <Route
+          path="/Add-Movie"
+          element={
+            <AddMovie
+              newmov={movie}
+              movielist={() => setNewmovie([...movie])}
             />
-          ))}
-        </div>
-      </div>
+          }
+        />
+      </Routes>
     </>
   );
 }

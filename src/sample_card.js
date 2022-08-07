@@ -1,15 +1,19 @@
 import "./style.css";
-function Card(props) {
+import Counter from "./Counter";
+function Card({ movie }) {
+  console.log(movie);
+
   return (
     <>
-      <div class="col col-md-6 com-sm-12 col-lg-4">
-        <img src={props.image} alt={props.name} />
-        <div class="movie-spec">
-          <h3>{props.name}</h3>
-          <p>⭐{props.rating}</p>
+      <div className="col col-12 col-sm-6 col-lg-3" id="whole-card">
+        <img src={movie.image} alt={movie.name} className="img-fluid" />
+        <div className="movie-spec">
+          <h3>{movie.name}</h3>
+          <p>⭐{movie.rating}</p>
         </div>
-        <div class="descript">
-          <p>{props.decript}</p>
+        <div className="descript">
+          <p>{movie.descrip}</p>
+          <Counter />
         </div>
       </div>
     </>
