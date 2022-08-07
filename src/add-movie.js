@@ -9,13 +9,6 @@ function AddMovie({ movielist, newmov }) {
   const [rating, setRating] = useState("");
   const [img, setImg] = useState("");
   const [descrip, setDescrip] = useState("");
-  const newdata = {
-    name: name,
-    rating: rating,
-    image: img,
-
-    descrip: descrip,
-  };
 
   return (
     <>
@@ -55,10 +48,15 @@ function AddMovie({ movielist, newmov }) {
         <Button
           variant="contained"
           onClick={() => {
-            newmov.push(newdata);
-            movielist(() => {
-              movielist([...newmov]);
-            });
+            const newdata = {
+              name: name,
+              rating: rating,
+              image: img,
+
+              descrip: descrip,
+            };
+
+            movielist([...newmov, newdata]);
           }}
         >
           Add Movie

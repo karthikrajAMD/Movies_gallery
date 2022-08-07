@@ -77,8 +77,6 @@ function App() {
   ];
   const [newmovie, setNewmovie] = useState([...movie]);
 
-  const fdata = newmovie;
-
   return (
     <>
       <Routes>
@@ -96,7 +94,7 @@ function App() {
               </nav>
               <div className="container">
                 <div className="row justify-content-center" style={styles}>
-                  {fdata.map((mv, i) => (
+                  {newmovie.map((mv, i) => (
                     <Card key={i} movie={mv} />
                   ))}
                 </div>
@@ -109,7 +107,7 @@ function App() {
           element={
             <AddMovie
               newmov={movie}
-              movielist={() => setNewmovie([...movie])}
+              movielist={() => setNewmovie([...newmovie, newmovie])}
             />
           }
         />
