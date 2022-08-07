@@ -1,4 +1,7 @@
 import { useState } from "react";
+
+import IconButton from "@mui/material/IconButton";
+
 import "./style.css";
 function Counter() {
   const [like, setLike] = useState("0");
@@ -6,20 +9,20 @@ function Counter() {
   return (
     <>
       <div className="like-dislike">
-        <button
+        <IconButton
           onClick={() => {
             setLike(+like + 1);
           }}
         >
           👍 {like}
-        </button>
-        <button
+        </IconButton>
+        <IconButton
           onClick={() => {
             setDislike(+dislike + 1);
           }}
         >
           👎{dislike}
-        </button>
+        </IconButton>
       </div>
     </>
   );
