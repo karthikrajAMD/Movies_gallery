@@ -76,7 +76,7 @@ function App() {
     },
   ];
   const [newmovie, setNewmovie] = useState([...movie]);
-
+  const newdata = newmovie;
   return (
     <>
       <Routes>
@@ -106,8 +106,8 @@ function App() {
           path="/Add-Movie"
           element={
             <AddMovie
-              newmov={movie}
-              movielist={() => setNewmovie([...newmovie, newmovie])}
+              newmov={newdata}
+              newmovie={() => setNewmovie([...newmovie, newmovie])}
             />
           }
         />

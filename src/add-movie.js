@@ -4,12 +4,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./style.css";
-function AddMovie({ movielist, newmov }) {
+function AddMovie({ newmovie, newmov }) {
   const [name, setName] = useState("");
   const [rating, setRating] = useState("");
   const [img, setImg] = useState("");
   const [descrip, setDescrip] = useState("");
-
+  // const [newmov, setNewmov] = useState(newmov);
   return (
     <>
       <Link className="link" to="/">
@@ -55,8 +55,9 @@ function AddMovie({ movielist, newmov }) {
 
               descrip: descrip,
             };
-
-            movielist([...newmov, newdata]);
+            // newmov.push(newdata);
+            // console.log(movielist);
+            newmovie([...newmov, newdata]);
           }}
         >
           Add Movie
