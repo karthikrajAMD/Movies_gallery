@@ -1,7 +1,7 @@
 import "./style.css";
 import Counter from "./Counter";
 function Card({ movie }) {
-  console.log(movie);
+  // console.log(movie);
 
   return (
     <>

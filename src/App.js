@@ -1,13 +1,11 @@
-import { useState } from "react";
+// import { useState } from "react";
 import Card from "./sample_card";
 
-import AddMovie from "./add-movie";
 import { Routes, Route, Link } from "react-router-dom";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import { useState } from "react";
 function App() {
-  const [color, setColor] = useState("");
-  const styles = {
-    backgroundColor: color,
-  };
   const movie = [
     {
       name: "GOT",
@@ -76,7 +74,11 @@ function App() {
     },
   ];
   const [newmovie, setNewmovie] = useState([...movie]);
-  const newdata = newmovie;
+  const [name, setName] = useState("");
+  const [rating, setRating] = useState("");
+  const [img, setImg] = useState("");
+  const [descrip, setDescrip] = useState("");
+
   return (
     <>
       <Routes>
@@ -84,7 +86,6 @@ function App() {
           path="/"
           element={
             <>
-              <input onChange={(e) => setColor(e.target.value)}></input>
               <nav>
                 <nav>
                   <Link className="link" to="/Add-Movie">
@@ -92,8 +93,9 @@ function App() {
                   </Link>
                 </nav>
               </nav>
+
               <div className="container">
-                <div className="row justify-content-center" style={styles}>
+                <div className="row justify-content-center">
                   {newmovie.map((mv, i) => (
                     <Card key={i} movie={mv} />
                   ))}
@@ -105,10 +107,55 @@ function App() {
         <Route
           path="/Add-Movie"
           element={
-            <AddMovie
-              newmov={newdata}
-              newmovie={() => setNewmovie([...newmovie, newmovie])}
-            />
+            <>
+              <Link className="link" to="/">
+                Home
+              </Link>
+
+              <div className="add-movie">
+                <div className="inputtext">
+                  <TextField
+                    id="outlined-basic"
+                    label="Names"
+                    variant="outlined"
+                    onChange={(e) => setName(e.target.value)}
+                  />
+
+                  <TextField
+                    id="outlined-basic"
+                    label="Rating"
+                    variant="outlined"
+                    onChange={(e) => setRating(e.target.value)}
+                  />
+                  <TextField
+                    id="outlined-basic"
+                    label="Poster"
+                    variant="outlined"
+                    onChange={(e) => setImg(e.target.value)}
+                  />
+                  <TextField
+                    id="outlined-basic"
+                    label="Description"
+                    variant="outlined"
+                    onChange={(e) => setDescrip(e.target.value)}
+                  />
+                </div>
+                <Button
+                  variant="contained"
+                  onClick={() => {
+                    const newdata = {
+                      name: name,
+                      rating: rating,
+                      image: img,
+                      descrip: descrip,
+                    };
+                    setNewmovie([...newmovie, newdata]);
+                  }}
+                >
+                  Add Movie
+                </Button>
+              </div>
+            </>
           }
         />
       </Routes>
