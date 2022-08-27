@@ -7,9 +7,13 @@
   justify-content: space-between;
   align-items: center;
 }
-
+.iconlist {
+  display: flex;
+  justify-content: flex-end;
+}
 #whole-card {
   width: 330px;
+  margin-top: 10px;
 }
 .rating {
   margin-top: 10px;
