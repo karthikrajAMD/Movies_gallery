@@ -4,6 +4,10 @@ import Home from "./Home";
 import Addmovie from "./Addmovie";
 import { Routes, Route, Link } from "react-router-dom";
 import { useState } from "react";
+import { AppBar, Button, Toolbar } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Moviedetails from "./Moviedetails";
 function App() {
   const movie = [
     {
@@ -73,11 +77,39 @@ function App() {
     },
   ];
   const [newmovie, setNewmovie] = useState([...movie]);
+  const navigate = useNavigate();
   return (
     <>
+      {/* <Link className="link" to="/">
+        Home
+      </Link> */}
+      <AppBar position="static">
+        <Toolbar>
+          <Button
+            color="inherit"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            HOME
+          </Button>
+          <Button
+            color="inherit"
+            onClick={() => {
+              navigate("/Add-Movie");
+            }}
+          >
+            Add Movie
+          </Button>
+        </Toolbar>
+      </AppBar>
       <Routes>
-        <Route path="/" element={<Home newmovie={newmovie} />} />
-        <Route path="/Add-Movie" element={<Addmovie movie={newmovie} />} />
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/Add-Movie"
+          element={<Addmovie newmovie={newmovie} setNewmovie={setNewmovie} />}
+        />
+        <Route path="/:id" element={<Moviedetails />} />
       </Routes>
     </>
   );

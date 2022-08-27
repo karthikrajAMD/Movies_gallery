@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 
 import "./style.css";
-function Counter() {
+export function Counter() {
   const [like, setLike] = useState(0);
   const [dislike, setDislike] = useState(0);
+
   return (
     <>
       <div className="like-dislike">

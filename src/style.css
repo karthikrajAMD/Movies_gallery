@@ -5,12 +5,14 @@
 .movie-spec {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 #whole-card {
   width: 330px;
-
-  place-content: center;
+}
+.rating {
+  margin-top: 10px;
 }
 .like-dislike {
   display: flex;
