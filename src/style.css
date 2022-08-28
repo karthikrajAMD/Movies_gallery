@@ -15,6 +15,28 @@
   width: 330px;
   margin-top: 10px;
 }
+.inputtext {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+@media (max-width: 900px) {
+  .inputtext {
+    width: 700px;
+  }
+}
+@media (max-width: 700px) {
+  .inputtext {
+    width: 500px;
+  }
+}
+@media (max-width: 500px) {
+  .inputtext {
+    width: 350px;
+  }
+}
 .rating {
   margin-top: 10px;
 }
@@ -32,10 +54,9 @@ button {
   place-content: center;
   min-height: 100vh;
 }
-.inputtext {
-  display: flex;
-  flex-direction: column;
-  width: 500px;
+.addmoviebut {
+  width: 300px;
+  margin: 0 auto;
 }
 .inputtext > div {
   margin-bottom: 10px;

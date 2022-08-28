@@ -24,7 +24,10 @@ function Card({ movie }) {
           >
             <InfoIcon className="info" color="primary" />
           </IconButton>
-          <IconButton className="editbut">
+          <IconButton
+            className="editbut"
+            onClick={() => navigate(`/edit/${movie.id}`)}
+          >
             <EditIcon className="edit" color="success" />
           </IconButton>
           <IconButton

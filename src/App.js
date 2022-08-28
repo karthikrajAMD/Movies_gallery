@@ -8,6 +8,7 @@ import { AppBar, Button, Toolbar } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Moviedetails from "./Moviedetails";
+import Editmovie from "./Editmovie";
 function App() {
   const movie = [
     {
@@ -110,6 +111,7 @@ function App() {
           element={<Addmovie newmovie={newmovie} setNewmovie={setNewmovie} />}
         />
         <Route path="/:id" element={<Moviedetails />} />
+        <Route path="/edit/:id" element={<Editmovie />} />
       </Routes>
     </>
   );
