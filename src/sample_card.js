@@ -1,16 +1,22 @@
 import "./style.css";
 import { Counter } from "./Counter";
+import { useContext } from "react";
 import InfoIcon from "@mui/icons-material/Info";
-import Moviedetails from "./Moviedetails";
-import { Button, IconButton } from "@mui/material";
-import { Navigate, useNavigate } from "react-router-dom";
+import { IconButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Context } from "./context";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { API } from "./api.jsx";
 import EditIcon from "@mui/icons-material/Edit";
+import { ToastContainer, toast } from "react-toastify";
+
 function Card({ movie }) {
   const navigate = useNavigate();
+  const [reload, setLoad] = useContext(Context);
   return (
     <>
-      <div className="col col-12 col-sm-6 col-lg-3" id="whole-card">
+      {/* className="col col-12 col-sm-6 col-lg-3" */}
+      <div id="whole-card">
         <img src={movie.image} alt={movie.name} className="img-fluid" />
         <div className="movie-spec">
           <h3>{movie.name}</h3>
@@ -20,13 +26,13 @@ function Card({ movie }) {
         <div className="iconlist">
           <IconButton
             className="infobut"
-            onClick={() => navigate(`/${movie.id}`)}
+            onClick={() => navigate(`/${movie._id}`)}
           >
             <InfoIcon className="info" color="primary" />
           </IconButton>
           <IconButton
             className="editbut"
-            onClick={() => navigate(`/edit/${movie.id}`)}
+            onClick={() => navigate(`/edit/${movie._id}`)}
           >
             <EditIcon className="edit" color="success" />
           </IconButton>
@@ -37,13 +43,21 @@ function Card({ movie }) {
                 `Are you sure to delete ${movie.name} movie`
               );
               if (input) {
-                fetch(
-                  `https://6301d5f39a1035c7f807c7e5.mockapi.io/movies/${movie.id}`,
-                  {
-                    method: "DELETE",
-                  }
-                );
-                navigate("/");
+                fetch(`${API}/movies/${movie._id}`, {
+                  method: "DELETE",
+                })
+                  .then((res) => res.json())
+                  .then((data) => {
+                    if (data.status === 200) {
+                      toast.success(data.message);
+                      setTimeout(() => {
+                        setLoad("1");
+                        navigate("/");
+                      }, 2000);
+                    } else {
+                      toast.error(data.message);
+                    }
+                  });
               }
             }}
           >
@@ -55,6 +69,18 @@ function Card({ movie }) {
           <Counter />
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 }

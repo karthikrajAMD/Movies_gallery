@@ -18,6 +18,7 @@
 .inputtext {
   display: flex;
   flex-direction: column;
+
   width: 800px;
   /* align-items: center; */
   /* justify-content: center; */
@@ -52,6 +53,7 @@ button {
 .add-movie {
   display: grid;
   place-content: center;
+
   min-height: 100vh;
 }
 .addmoviebut {
@@ -64,4 +66,17 @@ button {
 .link {
   font-size: 20px;
   margin-left: 10px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  align-items: center;
+}
+.cards-list {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
+import { API } from "./api";
 import Button from "@mui/material/Button";
 export default function Editform({ edit }) {
   const [name, setName] = useState(edit.name);
@@ -15,6 +16,7 @@ export default function Editform({ edit }) {
       <div className="inputtext ">
         <TextField
           value={name}
+          label="Movie Name"
           onChange={(e) => setName(e.target.value)}
           id="outlined-basic"
           variant="outlined"
@@ -62,17 +64,14 @@ export default function Editform({ edit }) {
             trailer: trailer,
           };
 
-          fetch(
-            `https://6301d5f39a1035c7f807c7e5.mockapi.io/movies/${edit.id}`,
-            {
-              method: "PUT",
+          fetch(`${API}/movies/${edit._id}`, {
+            method: "PUT",
 
-              body: JSON.stringify(updatedata),
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          )
+            body: JSON.stringify(updatedata),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
             .then((res) => res.json())
             .then(() => navigate("/"));
         }}

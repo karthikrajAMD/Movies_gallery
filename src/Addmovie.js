@@ -1,31 +1,22 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { API } from "./api";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 function Addmovie() {
-  const [addfilm, setAddfilm] = useState({});
   const [name, setName] = useState("");
   const [rating, setRating] = useState("");
   const [img, setImg] = useState("");
   const [descrip, setDescrip] = useState("");
   const [trailer, setTrailer] = useState("");
   const navigate = useNavigate();
-  // const Addmovie = (newdata) => {
-  //   fetch("https://6301d5f39a1035c7f807c7e5.mockapi.io/movies", {
-  //     method: "POST",
-  //     header: "content",
-  //     body: JSON.stringify(newdata),
-  //   });
-  //   navigate("/");
-  // };
 
   return (
     <>
       <div className="add-movie ">
         <div className="inputtext ">
           <TextField
-            // className="col-10"
             id="outlined-basic"
             label="Name"
             variant="outlined"
@@ -73,9 +64,8 @@ function Addmovie() {
               descrip: descrip,
               trailer: trailer,
             };
-            // Addmovie(newdata);
-            // setNewmovie([...newmovie, newdata]);
-            fetch("https://6301d5f39a1035c7f807c7e5.mockapi.io/movies", {
+
+            fetch(`${API}/movies`, {
               method: "POST",
 
               body: JSON.stringify(newdata),
@@ -84,12 +74,33 @@ function Addmovie() {
               },
             })
               .then((res) => res.json())
-              .then(() => navigate("/"));
+              .then((data) => {
+                if (data.status === 200) {
+                  toast.success(data.message);
+                  setTimeout(() => {
+                    navigate("/");
+                  }, 2000);
+                } else {
+                  toast.error(data.message);
+                }
+              });
           }}
         >
           Add Movie
         </Button>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 }

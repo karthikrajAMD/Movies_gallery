@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-
+import { API } from "./api";
 export default function Moviedetails() {
   const { id } = useParams();
   console.log(id);
   const [movie, setMovie] = useState({});
   useEffect(() => {
-    fetch(`https://6301d5f39a1035c7f807c7e5.mockapi.io/movies/${id}`, {
+    fetch(`${API}/movies/${id}`, {
       method: "GET",
     })
       .then((res) => res.json())
-      .then((data) => setMovie(data));
-  }, []);
+      .then((data) => setMovie(data.movieExist));
+  }, [id]);
   const fullname = movie.fullname;
   return (
     <div className="container">
